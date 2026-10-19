@@ -1,9 +1,9 @@
 services:
   - type: web
     name: garki-market-promo
-    runtime: static
+    runtime: node
     buildCommand: npm install && npm run build
-    staticPublishPath: ./dist
+    startCommand: npm start
     envVars:
       - key: NODE_VERSION
         value: 22
