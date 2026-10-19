@@ -1,0 +1,13 @@
+Photo credits (bundled locally so the prototype works offline)
+
+Wikimedia Commons — licensed CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/); resized to 960–1280 px wide.
+  market-shops.jpg, market-street.jpg ............ "Shops in Garki Market", "Garki Market" — Anass Sedrati
+  market-intl-01 … 07.jpg ........................ "Garki International Market 01–07" — Kritzolina
+  market-cross-section.jpg, market-wuse.jpg ...... "A cross section of Garki Model Market Abuja, Nigeria", "Wuse Market Abuja Nigeria" — EsthyR
+  market-hustle-3.jpg, market-hustle-6.jpg ....... "Everyday Hustle in Nigeria 3 / 6" — Tenisnaps
+  market-mile12.jpg .............................. "A Busy Market in Mile 12, Lagos- Nigeria" — ShoT88 Studios
+
+Unsplash — Unsplash License (free to use, no attribution required); photographers not individually recorded:
+  act-*.jpg (brand activation / sampling / pop-up scenes)
+
+Source files can be re-fetched with: node scripts/download-images.mjs

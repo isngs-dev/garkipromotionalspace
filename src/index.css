@@ -1,0 +1,198 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/plus-jakarta-sans';
+@import '@fontsource-variable/fraunces';
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Fraunces Variable', ui-serif, Georgia, 'Times New Roman', serif;
+
+  /* Theme = blue + green. Brand: confident blue */
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+  --color-brand-950: #172554;
+
+  /* Accent: emerald green (CTAs, active steps, badges). 500 is deep enough for white text. */
+  --color-accent-50: #ecfdf5;
+  --color-accent-100: #d1fae5;
+  --color-accent-200: #a7f3d0;
+  --color-accent-300: #6ee7b7;
+  --color-accent-400: #34d399;
+  --color-accent-500: #059669;
+  --color-accent-600: #047857;
+  --color-accent-700: #065f46;
+
+  --color-sand-50: #f8fafc;
+  --color-sand-100: #f1f5f9;
+  --color-sand-200: #e2e8f0;
+  --color-sand-300: #cbd5e1;
+  --color-ink: #0f1f3d;
+  --color-ink-soft: #475569;
+  --color-ink-mute: #64748b;
+  --color-line: #e2e8f0;
+
+  /* Status system (used everywhere) */
+  --color-st-available: #16a34a;
+  --color-st-available-soft: #dcfce7;
+  --color-st-available-ink: #14612f;
+  --color-st-booked: #dc2626;
+  --color-st-booked-soft: #fee2e2;
+  --color-st-booked-ink: #991b1b;
+  --color-st-pending: #f59e0b;
+  --color-st-pending-soft: #fef3c7;
+  --color-st-pending-ink: #8a4a05;
+  --color-st-blocked: #94a3b8;
+  --color-st-blocked-soft: #e8ecf1;
+  --color-st-blocked-ink: #475569;
+
+  --shadow-card: 0 1px 2px rgb(15 31 61 / 0.05), 0 8px 24px -12px rgb(15 31 61 / 0.18);
+  --shadow-pop: 0 12px 40px -8px rgb(15 31 61 / 0.35);
+}
+
+body {
+  margin: 0;
+  background: var(--color-sand-50);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-variation-settings: 'opsz' 96, 'SOFT' 30;
+}
+
+::selection {
+  background: var(--color-accent-200);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+
+/* ---------- Motion ---------- */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.animate-pop-in {
+  animation: pop-in 0.18s ease-out both;
+}
+@keyframes scan-line {
+  0% {
+    top: 8%;
+  }
+  50% {
+    top: 88%;
+  }
+  100% {
+    top: 8%;
+  }
+}
+.animate-scan-line {
+  animation: scan-line 1.6s ease-in-out infinite;
+}
+@keyframes draw-check {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.draw-check {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: draw-check 0.6s 0.15s ease-out forwards;
+}
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+.pulse-ring {
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animate-slide-in {
+  animation: slide-in 0.25s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Floor plan: status hatch for blocked spaces is defined inline in SVG <defs> */
+.map-space {
+  transition: filter 0.15s, opacity 0.2s, transform 0.15s;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.map-space[data-clickable='true']:hover,
+.map-space[data-clickable='true']:focus-visible {
+  filter: drop-shadow(0 4px 8px rgb(22 163 74 / 0.5));
+  transform: scale(1.08);
+}
+.map-space[data-active='true'] {
+  filter: drop-shadow(0 3px 6px rgb(20 24 58 / 0.4));
+}
+
+/* Print: only passes */
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+}
